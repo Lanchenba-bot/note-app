@@ -13,7 +13,9 @@ addButton.addEventListener("click", (event) => {
     };
     noteList[note.id] = note;
     localStorage.setItem('noteList', JSON.stringify(noteList));
-    location.reload(); 
+    location.reload();
+    window.scrollTo(0,0);
+    
   
 });
 
