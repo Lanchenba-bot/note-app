@@ -48,11 +48,12 @@ form{
 	color: white;
 	font-size: 30px;
 	font-weight: 400;
+   	 white-space: nowrap;
 }
 
 #search{
 	padding: 0.3rem 1rem;
-	width: 280px;
+	width: 300px;
 	border: 0;
 	border-radius: 50px;
 }
@@ -162,10 +163,14 @@ form{
 }
 
 @media only screen and (max-width: 750px) {
+	#search{
+	width: 240px;
+	
+  }
 	.note-app{
 	color: white;
-	font-size: 15px;
-	font-weight: 400;
+	font-size: 14px;
+	font-weight: 600;
 	}
   .list-items{
   	grid-template-columns: 1fr;
