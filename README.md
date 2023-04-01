@@ -25,4 +25,4 @@ How to use
 
 Credits
 
-    This project was built by [Your Name] as a coding exercise.
+    This project was built by Lanchenba Singha as a coding exercise.
