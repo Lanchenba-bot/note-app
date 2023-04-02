@@ -1,3 +1,24 @@
+const hamButton = document.getElementById("ham");
+const listNotes = document.getElementById("list-notes");
+const back = document.getElementById("back");
+let state = true;
+ham.addEventListener("click", (e)=>{
+  if(state){
+    back.classList.add("active");
+    listNotes.classList.add("active");
+    state = false;
+  }else{
+    back.classList.remove("active");
+    listNotes.classList.remove("active");
+    state = true;
+  }
+  
+})
+back.addEventListener("click", (e)=>{
+    back.classList.remove("active");
+    listNotes.classList.remove("active");
+})
+
 const addButton = document.getElementById('add');
 const form = document.querySelector('form');
 let noteList = JSON.parse(localStorage.getItem('noteList')) || {};
@@ -13,15 +34,40 @@ addButton.addEventListener("click", (event) => {
     };
     noteList[note.id] = note;
     localStorage.setItem('noteList', JSON.stringify(noteList));
-    location.reload();
+    location.reload(); 
     window.scrollTo(0,0);
-    
   
 });
 
+const hamListItem = document.querySelector(".ham-list-item");
+for (const [key, value] of Object.entries(noteList).reverse()) {
+  const anchorForHam = document.createElement('a');
+  const headHam = document.createElement('h1');
+  const paraHam = document.createElement('p');
+  const divHamItem = document.createElement('div');
+
+  anchorForHam.setAttribute('href', "#id"+key);
+  anchorForHam.setAttribute('class', "anchor-ham");
+  divHamItem.setAttribute('class', "ham-item");
+  divHamItem.innerHTML=`<h3> ${value.head} </h3> <p> ${value.text} </p>`;
+  
+  anchorForHam.appendChild(divHamItem);
+  hamListItem.appendChild(anchorForHam);
+
+}
+
+const anchorHam = document.querySelectorAll('.anchor-ham');
+console.log(anchorHam);
+for(let i=0; i<anchorHam.length; i++){
+  console.log(anchorHam[i]);
+  anchorHam[i].addEventListener("click", (event)=>{
+  back.classList.remove("active");
+  listNotes.classList.remove("active");
+
+  })
+}
+
 const listItems = document.querySelector('.list-items');
-
-
 for (const [key, value] of Object.entries(noteList).reverse()) {
   const noteDiv = document.createElement('div');
   const textDiv = document.createElement('div');
@@ -29,8 +75,8 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
   const deleteDiv =document.createElement('div');
   const deleteButton = document.createElement('button');
 
-
   noteDiv.setAttribute('data-id', key);
+  noteDiv.setAttribute('id', "id"+key);
   noteDiv.classList.add('item');
   noteHeading.classList.add('note-heading');
 
@@ -60,6 +106,7 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
     delete noteList[id];
     localStorage.setItem('noteList', JSON.stringify(noteList));
     parentElement.remove();
+    window.location.reload();
   }
   deleteButton.addEventListener("click", (event)=>{
     const parentElement = event.target.closest('.item');
@@ -77,7 +124,7 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
       head: noteHeadingText.value,
       text: noteList[key].text
     };
-
+    window.location.reload();
     noteList[key] = updatedHeading;
     localStorage.setItem('noteList', JSON.stringify(noteList));
   });
@@ -91,7 +138,7 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
       head:noteList[key].head,
       text: noteText.value
     };
-
+    window.location.reload();
     noteList[key] = updatedNote;
     localStorage.setItem('noteList', JSON.stringify(noteList));
   });
