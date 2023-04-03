@@ -35,36 +35,33 @@ addButton.addEventListener("click", (event) => {
     noteList[note.id] = note;
     localStorage.setItem('noteList', JSON.stringify(noteList));
     location.reload(); 
-    window.scrollTo(0,0);
-  
+    
 });
 
+
 const hamListItem = document.querySelector(".ham-list-item");
-for (const [key, value] of Object.entries(noteList).reverse()) {
+
+function hamListAdd(head, text, key){
   const anchorForHam = document.createElement('a');
-  const headHam = document.createElement('h1');
-  const paraHam = document.createElement('p');
   const divHamItem = document.createElement('div');
 
   anchorForHam.setAttribute('href', "#id"+key);
   anchorForHam.setAttribute('class', "anchor-ham");
   divHamItem.setAttribute('class', "ham-item");
-  divHamItem.innerHTML=`<h3> ${value.head} </h3> <p> ${value.text} </p>`;
+  divHamItem.innerHTML=`<h3> ${head} </h3> <p> ${text} </p>`;
   
   anchorForHam.appendChild(divHamItem);
   hamListItem.appendChild(anchorForHam);
-
-}
-
-const anchorHam = document.querySelectorAll('.anchor-ham');
-console.log(anchorHam);
-for(let i=0; i<anchorHam.length; i++){
+  const anchorHam = document.querySelectorAll('.anchor-ham');
+  console.log(anchorHam);
+  for(let i=0; i<anchorHam.length; i++){
   console.log(anchorHam[i]);
   anchorHam[i].addEventListener("click", (event)=>{
   back.classList.remove("active");
   listNotes.classList.remove("active");
 
   })
+}
 }
 
 const listItems = document.querySelector('.list-items');
@@ -114,35 +111,41 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
     deleteNote(id, parentElement);
   })
 
+  let textValue = "";
+  let headValue = "";
    noteHeadingText.addEventListener("blur", () => {
-    console.log("where is the bug");
     const parentElement = event.target.closest('.item');
     const id = parentElement.getAttribute('data-id');
-
+    textValue = noteHeadingText.value;
     const updatedHeading = {
       id: key,
       head: noteHeadingText.value,
       text: noteList[key].text
     };
-    window.location.reload();
+    console.log(textValue);
     noteList[key] = updatedHeading;
     localStorage.setItem('noteList', JSON.stringify(noteList));
+    
   });
 
   noteText.addEventListener("blur", () => {
     const parentElement = event.target.closest('.item');
     const id = parentElement.getAttribute('data-id');
-
     const updatedNote = {
       id: key,
       head:noteList[key].head,
       text: noteText.value
     };
-    window.location.reload();
+    
     noteList[key] = updatedNote;
-    localStorage.setItem('noteList', JSON.stringify(noteList));
+    localStorage.setItem('noteList', JSON.stringify(noteList));  
+    window.location.reload();
   });
+  console.log(value.head, value.text);
+  hamListAdd(value.head, value.text, key);
+  
 }
+
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', () => {
   const searchTerm = searchInput.value.toLowerCase();

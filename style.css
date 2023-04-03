@@ -242,7 +242,7 @@ form{
 }
 .item .text-div > textarea:focus{
 	outline: none !important;
-	border: 2px solid #0d47a1;
+	border: 0px solid #0d47a1;
 }
 .item .delete-div{
 	display:flex;
@@ -298,4 +298,8 @@ form{
   .list-items{
   	grid-template-columns: 1fr;
   }
+  .item  .text-div > textarea{
+	
+	height: fit-content;
+	}
 }
