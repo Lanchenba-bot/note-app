@@ -34,6 +34,7 @@ addButton.addEventListener("click", (event) => {
     };
     noteList[note.id] = note;
     localStorage.setItem('noteList', JSON.stringify(noteList));
+    document.documentElement.scrollTop = 0;
     location.reload(); 
     
 });
