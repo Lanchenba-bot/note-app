@@ -329,13 +329,13 @@ form{
   	grid-template-columns: 1fr 1fr;
   }
 	.nav-div{
-		max-width: 600px;
+		width: 100%;
 	}
 }
 
 @media only screen and (max-width: 750px) {
 	.nav-div{
-		max-width: 450px;
+		width: 100%;
 	}
 	.note-app{
 	color: white;
