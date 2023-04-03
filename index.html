@@ -3,10 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Todo</title>
+	<title>NoteZ</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
 <body>
+
 <div id="back" class="back"></div>
 <div id="list-notes" class="list-notes">
 	<h1 class="list-note-heading">List Notes</h1>
@@ -22,14 +25,24 @@
 </div>
 	
 <nav>
-
-	<button id="ham"><div class="ham-icon"></div></button>
+	<div class="nav-div">
+		<div class="ham-icon-div">
+		<button id="ham"><div class="ham-icon"></div></button>
+	</div>
+	<div class="logo">
+		<img src="logo.png">
+	</div>
+	
 	<!-- <h1 class="note-app">{ Note App }</h1> -->
-	<input 
+	<div class="search-div">
+		<input 
 		type="text" 
 		name="search" 
 		id="search" 
 		placeholder="Search...">
+	</div>
+	</div>
+		
 
 </nav>
 <button id="add"><span>+</span></button>
@@ -42,3 +55,4 @@
 
 </body>
 </html>
+

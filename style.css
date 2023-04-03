@@ -30,6 +30,7 @@ box-sizing: border-box;
 margin: 0;
 padding: 0;
 font: inherit;
+/* background-color: rgba(256, 256, 256, 0.1); */
 
 }
 html{
@@ -38,34 +39,45 @@ html{
 }
 body{
 position: relative;
+display: flex;
+flex-direction: column;
+place-item: center;
 font-family: 'Noto Sans', sans-serif;
-
+min-width: 100vh;
 }
 img, picture, svg, video{
 display: block;
 max-width: 100%;
 }
 nav{
+	display: grid;
+	place-items: center;
 	position: fixed;
-	background-color: hsla(216, 85%, 34%, 0.8);
 	width: 100%;
-	height: 4rem;
-	top:  0;
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	backdrop-filter: blur(4px);
-	z-index: 500;
-
+	top: 5px;
 }
 section{
 	display: grid;
 	justify-content: center;
-	margin: 1rem;
 	margin-top: 4rem;
+	min-width: 100vh;
 }
 form{
 	margin: 1rem;
+}
+
+.nav-div{
+	display:grid;
+	place-items: center;
+	background-color: hsla(216, 85%, 34%, 0.8);
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5rem;
+	max-width: 1200px;
+	backdrop-filter: blur(4px);
+	z-index: 500;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 6px;
+	margin: 0 5px;
 }
 
 #ham{
@@ -76,8 +88,14 @@ form{
 	place-items: center;
 	background-color: transparent;
 	border: 0;
+	margin-left: 1rem;
 }
 
+.ham-icon-div{
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+}
 
 .ham-icon{
 	--var-ham: 2rem;
@@ -88,6 +106,7 @@ form{
 	background-color: white;
 	border-radius: var(--var-ham-border-radius);
 }
+
 .ham-icon:before{
 	content: '';
 	top: 13px;
@@ -110,11 +129,23 @@ form{
 	border-radius: var(--var-ham-border-radius);
 }
 
+.logo{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.logo > img{
+	width: 3.5rem;
+	accept-ratio: 1/1;
+
+}
+
 .back{
 	display: none;
 	position: fixed;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	z-index: 1000;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(20px);
@@ -127,7 +158,7 @@ form{
 	background-color: #1565c0;
 	color: white;
 	width: 300px;
-	height: 100vh;
+	height: 100%;
 	z-index: 2000;
 
 }
@@ -139,7 +170,7 @@ form{
 	padding: 1.2rem 1rem;
 }
 .ham-list-item{
-	border: 2px solid rgba(0, 0, 0, 0.5);
+	border: 2px solid transparent;
 	overflow: auto;
 }
 .anchor-ham{
@@ -148,7 +179,7 @@ form{
 }
 .anchor-ham .ham-item{
 	width: 100%;
-	background-color: rgba(255, 255, 255, 0.6);
+	background-color: rgba(255, 255, 255, 0.5);
 	color: black;
 	border-radius: 4px;
 	padding: 0.5rem;
@@ -176,9 +207,17 @@ form{
 	font-weight: 400;
 }
 
+
+.search-div{
+/* 	background-color: red; */
+	width: 100%;
+	margin-right: 2rem;
+}
+
 #search{
+
 	padding: 0.3rem 1rem;
-	width: 280px;
+	width: 100%;
 	border: 0;
 	border-radius: 50px;
 }
@@ -204,9 +243,9 @@ form{
 }
 
 .list-items{
-	display: grid;
-	max-width: 1200px;
-	grid-template-columns: repeat(3, 1fr);
+	display: flex;
+	max-width: 800px;
+	flex-wrap: wrap;
 	gap: 1rem;
 	padding: 1rem;
 
@@ -215,6 +254,8 @@ form{
 .item{
 	display: flex;
 	justify-content: space-between;
+	width: 100%;
+	height: max-content;
 	flex-wrap: wrap;
 	background-color: #64b5f6;
 	border-radius: 8px;
@@ -225,17 +266,17 @@ form{
 	place-items: center;
 	width: 100%;
 }
-.item  .text-div > textarea{
+.item .text-div > textarea{
 	background-color: transparent;
 	padding: 0.4rem;
 	width: 100%;
-	height: 13rem;
 	resize: none;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 400;
 	border: 0;
 	border-radius: 8px;
 	font-style: italic;
+	color: black;
 }
 .item  .text-div > textarea::placeholder{
 	color: white;
@@ -300,6 +341,6 @@ form{
   }
   .item  .text-div > textarea{
 	
-	height: fit-content;
+		height: max-content;
 	}
 }

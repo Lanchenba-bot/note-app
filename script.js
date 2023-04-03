@@ -88,6 +88,7 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
 
   const noteText = document.createElement('textarea');
   noteText.setAttribute('placeholder', 'Enter note text');
+  noteText.setAttribute('id', 'textarea'+ key);
   noteText.textContent = value.text;
 
   noteHeading.appendChild(noteHeadingText);
@@ -143,8 +144,19 @@ for (const [key, value] of Object.entries(noteList).reverse()) {
   });
   console.log(value.head, value.text);
   hamListAdd(value.head, value.text, key);
-  
+
 }
+for (const [key] of Object.entries(noteList).reverse()) {
+  const textAreaText = document.querySelector(`#textarea${key}`);
+  console.log(textAreaText);
+  textAreaText.addEventListener('input', ()=>{
+    textAreaText.style.height = 'auto';
+    textAreaText.style.height =`${textAreaText.scrollHeight}px`;
+  })
+   textAreaText.style.height = `${textAreaText.scrollHeight}px`;
+
+}
+ 
 
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', () => {
