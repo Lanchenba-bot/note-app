@@ -1,22 +1,29 @@
 const hamButton = document.getElementById("ham");
 const listNotes = document.getElementById("list-notes");
 const back = document.getElementById("back");
+const backButton = document.getElementById("back-button");
 let state = true;
+
+function inactive(){
+  back.classList.remove("active");
+  listNotes.classList.remove("active");
+}
 ham.addEventListener("click", (e)=>{
   if(state){
     back.classList.add("active");
     listNotes.classList.add("active");
     state = false;
   }else{
-    back.classList.remove("active");
-    listNotes.classList.remove("active");
+    inactive();
     state = true;
   }
   
 })
 back.addEventListener("click", (e)=>{
-    back.classList.remove("active");
-    listNotes.classList.remove("active");
+    inactive();
+})
+backButton.addEventListener("click", (e)=>{
+    inactive();
 })
 
 const addButton = document.getElementById('add');
@@ -32,13 +39,28 @@ addButton.addEventListener("click", (event) => {
       head: "",
       text: "" 
     };
+    document.documentElement.scrollTop = 0;
     noteList[note.id] = note;
     localStorage.setItem('noteList', JSON.stringify(noteList));
-    document.documentElement.scrollTop = 0;
     location.reload(); 
     
 });
 
+addButton.addEventListener("touchstart", (event) => {
+  const textInput = "";
+  const headInput = "";
+  event.preventDefault();
+    const note = {
+      id: Date.now(),
+      head: "",
+      text: "" 
+    };
+    document.documentElement.scrollTop = 0;
+    noteList[note.id] = note;
+    localStorage.setItem('noteList', JSON.stringify(noteList));
+    location.reload(); 
+    
+});
 
 const hamListItem = document.querySelector(".ham-list-item");
 
@@ -169,7 +191,7 @@ searchInput.addEventListener('input', () => {
     const lowerCaseHeading = heading.toLowerCase();
     const lowerCaseText = text.toLowerCase();
     if (lowerCaseHeading.includes(searchTerm) || lowerCaseText.includes(searchTerm)) {
-      item.style.display = 'grid';
+      item.style.display = 'flex';
     } else {
       item.style.display = 'none';
     }
