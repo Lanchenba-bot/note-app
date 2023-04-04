@@ -191,7 +191,7 @@ searchInput.addEventListener('input', () => {
     const lowerCaseHeading = heading.toLowerCase();
     const lowerCaseText = text.toLowerCase();
     if (lowerCaseHeading.includes(searchTerm) || lowerCaseText.includes(searchTerm)) {
-      item.style.display = 'flex';
+      item.style.display = 'grid';
     } else {
       item.style.display = 'none';
     }
